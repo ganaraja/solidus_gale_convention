@@ -1,0 +1,9 @@
+<% max_level = Spree::Config[:max_level_in_catalogs_menu] || 1 %>
+<nav id="categories" class="sidebar-item" data-hook>
+  <% @categories.each do |category| %>
+    <% cache [I18n.locale, category, max_level] do %>
+      <h6 class='category-root'><%= Spree.t(:shop_by_category, :category => category.name) %></h6>
+      <%= catalogs_tree(category.root, @catalog, max_level) %>
+    <% end %>
+  <% end %>
+</nav>

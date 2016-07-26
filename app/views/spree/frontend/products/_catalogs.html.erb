@@ -1,0 +1,14 @@
+<% if !@product.catalogs.blank? %>
+  <div id="catalog-crumbs" data-hook class="alpha columns five omega">
+    <h6 class="product-section-title"><%= Spree.t(:look_for_similar_items) %></h6>
+
+    <div data-hook="product_catalogs">
+      <ul id="similar_items_by_catalog" data-hook>
+      <% @product.catalogs.each do |catalog| %>
+        <li><%= link_to catalog.name, seo_url(catalog) %></li>
+      <% end %>
+      </ul>
+    </div>
+
+  </div>
+<% end %>

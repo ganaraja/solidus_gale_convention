@@ -1,0 +1,4 @@
+<div class="catalog" data-hook="catalog">
+  <h5 class="subcatalog-title"><%= link_to catalog.name, seo_url(catalog), class: 'breadcrumbs' %></h5>
+  <%= render partial: 'spree/shared/products', locals: { products: catalog_preview(catalog), catalog: catalog } %>
+</div>

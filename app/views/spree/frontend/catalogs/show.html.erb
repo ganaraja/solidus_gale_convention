@@ -1,0 +1,20 @@
+<h1 class="catalog-title"><%= @catalog.name %></h1>
+
+<% content_for :sidebar do %>
+  <div data-hook="catalog_sidebar_navigation">
+    <%= render partial: 'spree/shared/categories' %>
+    <%= render partial: 'spree/shared/filters' if @catalog.children.empty? %>
+  </div>
+<% end %>
+
+<div data-hook="catalog_products">
+  <%= render partial: 'spree/shared/products', locals: { products: @products, catalog: @catalog } %>
+</div>
+
+<% unless params[:keywords].present? %>
+  <div data-hook="catalog_children">
+    <% cache [I18n.locale, @catalog] do %>
+      <%= render partial: 'catalog', collection: @catalog.children %>
+    <% end %>
+  </div>
+<% end %>
